@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>2D Circle</title>
+
+    <script id="vertex-shader" type="x-shader/x-vertex">
+        attribute vec4 myPosition;
+        attribute vec3 myColor;
+
+        varying vec3 color;
+
+        void main() {
+            gl_PointSize = 1.0;
+            gl_Position = myPosition;
+
+            color = myColor;
+        }
+    </script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+        precision mediump float;
+
+        varying vec3 color;
+
+        void main() {
+            gl_FragColor = vec4(color, 1.0);
+        }
+    </script>
+
+    <script type="text/javascript" src="./Common/webgl-utils.js"></script>
+    <script type="text/javascript"
+        src="https://www.cs.unm.edu/~angel/BOOK/INTERACTIVE_COMPUTER_GRAPHICS/EIGHTH_EDITION/CODE/Common/initShaders.js"></script>
+    <script type="text/javascript"
+        src="https://www.cs.unm.edu/~angel/BOOK/INTERACTIVE_COMPUTER_GRAPHICS/EIGHTH_EDITION/CODE/Common/MVnew.js"></script>
+
+    <script type="text/javascript" src="./code.js"></script>
+</head>
+<body onload="init()" style="background-color: gray; display: flex; justify-content: center;">
+<main style="display: flex; flex-direction: column; max-width: min(20rem, 100vw);">
+    <canvas id="gl-canvas" width="320" height="320">
+    </canvas>
+
+    <input id="input-range" type="range" min="0.0" max="10.0" value="1.0" step="0.01">
+
+    <p>Current Value: <span id="input-range-value"></span></p>
+</main>
+</body>
+
+</html>
